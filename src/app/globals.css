@@ -35,38 +35,23 @@ body {
   outline-offset: 2px;
 }
 
-/* Page transition - strip blinds effect */
-@keyframes strip-slide-up {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-100vh);
-  }
-}
-
-@keyframes page-fade-in {
+/* Page transition - blur fade */
+@keyframes page-blur-in {
   from {
     opacity: 0;
+    filter: blur(8px);
+    transform: scale(1.015);
   }
   to {
     opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
   }
 }
 
-.page-strip {
-  position: fixed;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  background-color: #0f172a;
-  pointer-events: none;
-  will-change: transform;
-  animation: strip-slide-up 0.5s cubic-bezier(0.76, 0, 0.24, 1) forwards;
-}
-
 .page-enter {
-  animation: page-fade-in 0.4s ease-out 0.3s both;
+  animation: page-blur-in 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  will-change: opacity, filter, transform;
 }
 
 /* Line clamp utilities */

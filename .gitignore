@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+/playwright-report/
+/test-results/
 
 # next.js
 /.next/
@@ -23,6 +25,13 @@
 # misc
 .DS_Store
 *.pem
+
+# Claude Code
+.claude/settings.local.json
+MEMORY.md
+
+# Source assets (raw originals - processed versions are in public/images/)
+/source/
 
 # debug
 npm-debug.log*
