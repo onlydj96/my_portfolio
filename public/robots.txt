@@ -1,0 +1,9 @@
+# 개발 환경용 - 배포 시 주석 해제
+# User-agent: *
+# Disallow: /
+
+# 배포 환경용 - 배포 시 주석 제거
+User-agent: *
+Allow: /
+
+Sitemap: https://luke-hwangbo.vercel.app/sitemap.xml
