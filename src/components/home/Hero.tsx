@@ -78,10 +78,9 @@ export function Hero() {
               {profile.contact.resume && (
                 <a
                   href={profile.contact.resume}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  download="Luke_Hwangbo_Resume.pdf"
                   className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
-                  aria-label="이력서 다운로드 (새 탭에서 열림)"
+                  aria-label="이력서 다운로드"
                 >
                   Resume
                 </a>

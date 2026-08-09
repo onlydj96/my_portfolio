@@ -50,6 +50,7 @@ export const projectSchema = z.object({
   gallery: z.array(z.object({
     src: z.string(),
     caption: z.string().optional(),
+    fit: z.enum(["cover", "contain"]).optional(),
   })).optional(),
   externalUrl: z.string().url().optional(),
   repositoryUrl: z.string().url().optional(),

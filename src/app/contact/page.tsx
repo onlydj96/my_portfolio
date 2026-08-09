@@ -100,10 +100,9 @@ export default function ContactPage() {
                   <p className="text-sm text-gray-500">Resume</p>
                   <a
                     href={profile.contact.resume}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    download="Luke_Hwangbo_Resume.pdf"
                     className="text-lg text-blue-600 hover:text-blue-800 hover:underline"
-                    aria-label="이력서 다운로드 (새 탭에서 열림)"
+                    aria-label="이력서 다운로드"
                   >
                     이력서 다운로드
                   </a>

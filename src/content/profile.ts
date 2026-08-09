@@ -12,7 +12,7 @@ export const profile: Profile = {
     email: "onlydj96@gmail.com",
     phone: "010-2573-5402",
     github: "https://github.com/onlydj96",
-    resume: "/resume/resume.pdf",
+    resume: "/resume.pdf",
   },
   profileImage: "/images/profile.png",
   profileImageMobile: "/images/profile-mobile.jpg",

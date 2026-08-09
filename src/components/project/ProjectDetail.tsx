@@ -83,7 +83,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
                       src={image.src}
                       alt={image.caption ?? `${project.title} 화면 ${index + 1}`}
                       fill
-                      className="object-cover object-top"
+                      className={image.fit === "contain" ? "object-contain" : "object-cover object-top"}
                       sizes="(max-width: 768px) 100vw, 896px"
                     />
                   </div>
