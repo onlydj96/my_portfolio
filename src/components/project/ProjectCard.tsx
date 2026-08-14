@@ -1,27 +1,36 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import type { Project } from "@/types/portfolio";
 import { CategoryBadge } from "@/components/common/CategoryBadge";
 import { TechTag } from "@/components/common/TechTag";
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslatedProject } from "@/i18n/utils";
+import { ui } from "@/i18n/ui";
 
 interface ProjectCardProps {
   project: Project;
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
+  const { language } = useLanguage();
+  const t = ui[language].projects;
+  const p = getTranslatedProject(project, language);
+
   return (
     <article className="group bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
       <Link
-        href={`/projects/${project.slug}`}
+        href={`/projects/${p.slug}`}
         className="block"
-        aria-label={`${project.title} 프로젝트 상세보기`}
+        aria-label={`${p.title} - ${t.viewDetail}`}
       >
         {/* Thumbnail */}
         <div className="aspect-video bg-gray-100 relative">
-          {project.thumbnailImage ? (
+          {p.thumbnailImage ? (
             <Image
-              src={project.thumbnailImage}
-              alt={project.title}
+              src={p.thumbnailImage}
+              alt={p.title}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -50,33 +59,33 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <div className="p-4 sm:p-6">
           {/* Categories */}
           <div className="flex flex-wrap gap-2 mb-3">
-            {project.categories.map((category) => (
+            {p.categories.map((category) => (
               <CategoryBadge key={category} category={category} />
             ))}
           </div>
 
           {/* Title */}
           <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-2 line-clamp-2">
-            {project.title}
+            {p.title}
           </h3>
 
           {/* Summary */}
-          <p className="text-gray-600 text-sm mb-4 line-clamp-2">{project.summary}</p>
+          <p className="text-gray-600 text-sm mb-4 line-clamp-2">{p.summary}</p>
 
           {/* Role */}
           <div className="mb-4">
-            <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">담당 역할</span>
-            <p className="text-sm text-gray-700 mt-1 line-clamp-1">{project.role.join(", ")}</p>
+            <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">{t.role}</span>
+            <p className="text-sm text-gray-700 mt-1 line-clamp-1">{p.role.join(", ")}</p>
           </div>
 
           {/* Tech Stack */}
           <div className="flex flex-wrap gap-1.5">
-            {project.techStack.slice(0, 4).map((tech) => (
+            {p.techStack.slice(0, 4).map((tech) => (
               <TechTag key={tech} name={tech} />
             ))}
-            {project.techStack.length > 4 && (
+            {p.techStack.length > 4 && (
               <span className="text-xs text-gray-500 self-center">
-                +{project.techStack.length - 4}
+                +{p.techStack.length - 4}
               </span>
             )}
           </div>

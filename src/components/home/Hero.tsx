@@ -1,8 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { profile } from "@/content/profile";
+import { profileEn } from "@/i18n/en/profile";
+import { useLanguage } from "@/context/LanguageContext";
+import { ui } from "@/i18n/ui";
 
 export function Hero() {
+  const { language } = useLanguage();
+  const t = ui[language].hero;
+  const tagline = language === "en" ? profileEn.tagline : profile.tagline;
+
   return (
     <section className="py-16 sm:py-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -13,7 +22,7 @@ export function Hero() {
               {profile.profileImage ? (
                 <Image
                   src={profile.profileImage}
-                  alt={`${profile.name.korean} 프로필 사진`}
+                  alt={`${profile.name.korean} profile photo`}
                   fill
                   className="object-cover scale-150 translate-y-[5%]"
                   priority
@@ -52,7 +61,7 @@ export function Hero() {
               {profile.positions.join(" · ")}
             </p>
             <p className="text-gray-700 text-lg mb-8 max-w-2xl">
-              {profile.tagline}
+              {tagline}
             </p>
 
             {/* CTA Buttons */}
@@ -61,28 +70,28 @@ export function Hero() {
                 href="/projects"
                 className="px-6 py-3 bg-gray-900 text-white rounded-lg font-medium hover:bg-gray-800 transition-colors"
               >
-                View Projects
+                {t.viewProjects}
               </Link>
               <Link
                 href="/career"
                 className="px-6 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors"
               >
-                View Career
+                {t.viewCareer}
               </Link>
               <Link
                 href="/contact"
                 className="px-6 py-3 bg-white text-gray-900 border border-gray-300 rounded-lg font-medium hover:bg-gray-50 transition-colors"
               >
-                Contact
+                {t.contact}
               </Link>
               {profile.contact.resume && (
                 <a
                   href={profile.contact.resume}
                   download="Luke_Hwangbo_Resume.pdf"
                   className="px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition-colors"
-                  aria-label="이력서 다운로드"
+                  aria-label={t.resumeLabel}
                 >
-                  Resume
+                  {t.resume}
                 </a>
               )}
             </div>

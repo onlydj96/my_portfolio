@@ -1,13 +1,22 @@
+"use client";
+
 import Link from "next/link";
 import type { Career } from "@/types/portfolio";
 import { TechTag } from "@/components/common/TechTag";
 import { formatDateRange } from "@/lib/utils";
+import { useLanguage } from "@/context/LanguageContext";
+import { getTranslatedCareer } from "@/i18n/utils";
+import { ui } from "@/i18n/ui";
 
 interface CareerCardProps {
   career: Career;
 }
 
 export function CareerCard({ career }: CareerCardProps) {
+  const { language } = useLanguage();
+  const t = ui[language].career;
+  const c = getTranslatedCareer(career, language);
+
   return (
     <article className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
       {/* Timeline marker - decorative */}
@@ -16,31 +25,31 @@ export function CareerCard({ career }: CareerCardProps) {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
         <div>
-          <h3 className="text-xl font-semibold text-gray-900">{career.company}</h3>
-          <p className="text-gray-600">{career.position}</p>
+          <h3 className="text-xl font-semibold text-gray-900">{c.company}</h3>
+          <p className="text-gray-600">{c.position}</p>
         </div>
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-500">
-            {formatDateRange(career.startDate, career.endDate, career.isCurrent)}
+            {formatDateRange(c.startDate, c.endDate, c.isCurrent)}
           </span>
-          {career.isCurrent && (
+          {c.isCurrent && (
             <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
-              현재
+              {t.current}
             </span>
           )}
         </div>
       </div>
 
       {/* Summary */}
-      <p className="text-gray-700 mb-4">{career.summary}</p>
+      <p className="text-gray-700 mb-4">{c.summary}</p>
 
       {/* Responsibilities by Role */}
       <div className="mb-4">
         <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
-          주요 업무
+          {t.keyResponsibilities}
         </h4>
         <div className="space-y-3">
-          {career.roles.map((roleData, roleIndex) => (
+          {c.roles.map((roleData, roleIndex) => (
             <div key={roleIndex}>
               <h5 className="text-sm font-semibold text-gray-800 mb-1">
                 {roleData.role}
@@ -56,13 +65,13 @@ export function CareerCard({ career }: CareerCardProps) {
       </div>
 
       {/* Achievements */}
-      {career.achievements.length > 0 && (
+      {c.achievements.length > 0 && (
         <div className="mb-4">
           <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
-            핵심 성과
+            {t.keyAchievements}
           </h4>
           <ul className="list-disc list-inside space-y-1 text-gray-700 text-sm">
-            {career.achievements.map((item, index) => (
+            {c.achievements.map((item, index) => (
               <li key={index}>{item}</li>
             ))}
           </ul>
@@ -72,27 +81,27 @@ export function CareerCard({ career }: CareerCardProps) {
       {/* Tech Stack */}
       <div className="mb-4">
         <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
-          기술 스택
+          {t.techStack}
         </h4>
         <div className="flex flex-wrap gap-1.5">
-          {career.techStack.map((tech) => (
+          {c.techStack.map((tech) => (
             <TechTag key={tech} name={tech} />
           ))}
         </div>
       </div>
 
       {/* Related Projects */}
-      {career.projectIds.length > 0 && (
+      {c.projectIds.length > 0 && (
         <div>
           <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
-            관련 프로젝트
+            {t.relatedProjects}
           </h4>
           <div className="flex flex-wrap gap-2">
             <Link
               href="/projects"
               className="text-sm text-blue-600 hover:text-blue-800 hover:underline"
             >
-              프로젝트 보기 →
+              {t.viewProjects}
             </Link>
           </div>
         </div>

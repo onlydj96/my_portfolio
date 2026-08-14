@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useLanguage } from "@/context/LanguageContext";
+import { ui } from "@/i18n/ui";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -15,6 +17,8 @@ const navLinks = [
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { language, toggleLanguage } = useLanguage();
+  const t = ui[language].nav;
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
@@ -31,10 +35,10 @@ export function Header() {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-white focus:px-4 focus:py-2 focus:text-gray-900"
       >
-        Skip to main content
+        {t.skipToMain}
       </a>
 
-      <nav aria-label="메인 네비게이션" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav aria-label={t.label} className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link
@@ -61,40 +65,61 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+
+            {/* Language Toggle */}
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              className="px-3 py-1 text-sm font-medium rounded-md border border-gray-300 text-gray-600 hover:text-gray-900 hover:border-gray-400 transition-colors"
+              aria-label={t.langToggle}
+            >
+              {language === "ko" ? "EN" : "KO"}
+            </button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            type="button"
-            className="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
-            onClick={toggleMenu}
-            aria-expanded={isMenuOpen}
-            aria-label={isMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
-          >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
+          {/* Mobile right side: language toggle + menu button */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              type="button"
+              onClick={toggleLanguage}
+              className="px-2.5 py-1 text-xs font-medium rounded border border-gray-300 text-gray-600 hover:text-gray-900 hover:border-gray-400 transition-colors"
+              aria-label={t.langToggle}
             >
-              {isMenuOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
-          </button>
+              {language === "ko" ? "EN" : "KO"}
+            </button>
+
+            <button
+              type="button"
+              className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+              onClick={toggleMenu}
+              aria-expanded={isMenuOpen}
+              aria-label={isMenuOpen ? t.menuClose : t.menuOpen}
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                {isMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
