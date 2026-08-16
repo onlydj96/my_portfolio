@@ -5,8 +5,9 @@ import type { Career } from "@/types/portfolio";
 import { TechTag } from "@/components/common/TechTag";
 import { formatDateRange } from "@/lib/utils";
 import { useLanguage } from "@/context/LanguageContext";
-import { getTranslatedCareer } from "@/i18n/utils";
+import { getTranslatedCareer, getTranslatedProject } from "@/i18n/utils";
 import { ui } from "@/i18n/ui";
+import { projects } from "@/content/projects";
 
 interface CareerCardProps {
   career: Career;
@@ -16,6 +17,10 @@ export function CareerCard({ career }: CareerCardProps) {
   const { language } = useLanguage();
   const t = ui[language].career;
   const c = getTranslatedCareer(career, language);
+
+  const relatedProjects = projects
+    .filter((p) => career.projectIds.includes(p.id))
+    .map((p) => getTranslatedProject(p, language));
 
   return (
     <article className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
@@ -91,19 +96,23 @@ export function CareerCard({ career }: CareerCardProps) {
       </div>
 
       {/* Related Projects */}
-      {c.projectIds.length > 0 && (
+      {relatedProjects.length > 0 && (
         <div>
           <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
             {t.relatedProjects}
           </h4>
-          <div className="flex flex-wrap gap-2">
-            <Link
-              href="/projects"
-              className="text-sm text-blue-600 hover:text-blue-800 hover:underline"
-            >
-              {t.viewProjects}
-            </Link>
-          </div>
+          <ul className="space-y-1">
+            {relatedProjects.map((project) => (
+              <li key={project.id}>
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="text-sm text-blue-600 hover:text-blue-800 hover:underline"
+                >
+                  {project.title} →
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       )}
     </article>
