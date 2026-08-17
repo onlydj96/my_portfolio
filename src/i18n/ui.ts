@@ -31,6 +31,8 @@ export const ui = {
       techStack: "기술 스택",
       relatedProjects: "관련 프로젝트",
       viewProjects: "프로젝트 보기 →",
+      showMoreProjects: "외 {n}개 더 보기 ▼",
+      showLessProjects: "접기 ▲",
     },
     projects: {
       title: "Projects",
@@ -106,6 +108,8 @@ export const ui = {
       techStack: "Tech Stack",
       relatedProjects: "Related Projects",
       viewProjects: "View Projects →",
+      showMoreProjects: "Show {n} more ▼",
+      showLessProjects: "Show less ▲",
     },
     projects: {
       title: "Projects",

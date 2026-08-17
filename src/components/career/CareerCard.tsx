@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import type { Career } from "@/types/portfolio";
 import { TechTag } from "@/components/common/TechTag";
@@ -21,6 +22,11 @@ export function CareerCard({ career }: CareerCardProps) {
   const relatedProjects = projects
     .filter((p) => career.projectIds.includes(p.id))
     .map((p) => getTranslatedProject(p, language));
+
+  const SHOW_COUNT = 2;
+  const [isExpanded, setIsExpanded] = useState(false);
+  const hasMore = relatedProjects.length > SHOW_COUNT;
+  const visibleProjects = isExpanded ? relatedProjects : relatedProjects.slice(0, SHOW_COUNT);
 
   return (
     <article className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
@@ -102,7 +108,7 @@ export function CareerCard({ career }: CareerCardProps) {
             {t.relatedProjects}
           </h4>
           <ul className="space-y-1">
-            {relatedProjects.map((project) => (
+            {visibleProjects.map((project) => (
               <li key={project.id}>
                 <Link
                   href={`/projects/${project.slug}`}
@@ -113,6 +119,16 @@ export function CareerCard({ career }: CareerCardProps) {
               </li>
             ))}
           </ul>
+          {hasMore && (
+            <button
+              onClick={() => setIsExpanded(!isExpanded)}
+              className="mt-1 text-sm text-gray-500 hover:text-gray-700"
+            >
+              {isExpanded
+                ? t.showLessProjects
+                : t.showMoreProjects.replace("{n}", String(relatedProjects.length - SHOW_COUNT))}
+            </button>
+          )}
         </div>
       )}
     </article>
