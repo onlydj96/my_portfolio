@@ -4,6 +4,8 @@ import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { ThemeProvider } from "@/context/ThemeContext";
+import { BackToTop } from "@/components/common/BackToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,29 +19,28 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://luke-hwangbo.vercel.app"), // 배포 URL로 변경 필요
-  title: "Luke Hwangbo | AX Engineer & Development PM",
+  title: "Luke Hwangbo | AI Engineer & Development PM",
   description:
-    "AI 개발, 업무 자동화, AI Agent 도입 및 개발 프로젝트 관리 경험을 소개하는 황보동준의 커리어 포트폴리오입니다.",
+    "NLP, Computer Vision, Edge AI 모델 개발 및 현장 배포 경험을 보유한 AI Engineer이자 Development PM, 황보동준의 커리어 포트폴리오입니다.",
   keywords: [
-    "AX Engineer",
-    "AI Agent",
+    "AI Engineer",
     "Development PM",
-    "AI 개발",
-    "업무 자동화",
     "Computer Vision",
     "Edge AI",
     "NLP",
+    "AI 개발",
+    "프로젝트 관리",
     "황보동준",
     "Luke Hwangbo",
   ],
   authors: [{ name: "Luke Hwangbo", url: "https://github.com/onlydj96" }],
   creator: "Luke Hwangbo",
   robots: {
-    index: false, // 배포 시 true로 변경
-    follow: false, // 배포 시 true로 변경
+    index: true,
+    follow: true,
   },
   openGraph: {
-    title: "Luke Hwangbo | AX Engineer & Development PM",
+    title: "Luke Hwangbo | AI Engineer & Development PM",
     description:
       "AI 개발, 업무 자동화, AI Agent 도입 및 개발 프로젝트 관리 경험을 소개하는 황보동준의 커리어 포트폴리오입니다.",
     type: "website",
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Luke Hwangbo | AX Engineer & Development PM",
+    title: "Luke Hwangbo | AI Engineer & Development PM",
     description:
       "AI 개발, 업무 자동화, AI Agent 도입 및 개발 프로젝트 관리 경험을 소개하는 황보동준의 커리어 포트폴리오입니다.",
     images: ["/images/og-image.jpg"],
@@ -71,14 +72,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" suppressHydrationWarning>
+      <head>
+        {/* 다크모드 플래시 방지: React hydration 전에 클래스 적용 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('portfolio-theme');var d=window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(t===null&&d)){document.documentElement.classList.add('dark');}}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-white dark:bg-slate-900 text-gray-900 dark:text-slate-100 transition-colors duration-300`}
       >
-        <LanguageProvider>
-          <Header />
-          <main className="flex-1 pt-16" id="main-content">{children}</main>
-          <Footer />
-        </LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            <Header />
+            <main className="flex-1 pt-16" id="main-content">{children}</main>
+            <Footer />
+            <BackToTop />
+          </LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
