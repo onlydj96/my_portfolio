@@ -69,6 +69,7 @@ export const projects: Project[] = [
       "AI 기반 개발 프로세스 정립으로 반복 업무 효율화",
     ],
     techStack: ["Claude Code", "Cursor", "Prompt Engineering", "Context Engineering", "Harness Engineering"],
+    thumbnailImage: "/images/projects/ai-agent-adoption/thumbnail.png",
     isFeatured: true,
     displayOrder: 2,
     visibility: "PUBLIC",
@@ -137,6 +138,7 @@ export const projects: Project[] = [
       "자사 모델 전환 검토 완료 및 기술적 타당성 검증",
       "분산 학습 환경 구축으로 대규모 모델 학습 경험 확보",
     ],
+    thumbnailImage: "/images/projects/intention-classification/thumbnail.png",
     techStack: [
       "Python",
       "PyTorch",
@@ -180,6 +182,7 @@ export const projects: Project[] = [
       "개발 자산 관리 체계 구축 완료",
       "코드 및 문서 추적·인수인계 가능",
     ],
+    thumbnailImage: "/images/projects/nas-gitlab-infrastructure/thumbnail.png",
     techStack: ["GitLab", "NAS", "Docker"],
     isFeatured: false,
     displayOrder: 5,
