@@ -29,22 +29,19 @@ export function CareerCard({ career }: CareerCardProps) {
   const visibleProjects = isExpanded ? relatedProjects : relatedProjects.slice(0, SHOW_COUNT);
 
   return (
-    <article className="bg-white rounded-lg shadow-sm border border-gray-100 p-6">
-      {/* Timeline marker - decorative */}
-      <div aria-hidden="true" className="hidden" />
-
+    <article className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 p-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
         <div>
-          <h3 className="text-xl font-semibold text-gray-900">{c.company}</h3>
-          <p className="text-gray-600">{c.position}</p>
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-slate-100">{c.company}</h3>
+          <p className="text-gray-600 dark:text-slate-400">{c.position}</p>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-gray-500 dark:text-slate-400">
             {formatDateRange(c.startDate, c.endDate, c.isCurrent)}
           </span>
           {c.isCurrent && (
-            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300">
               {t.current}
             </span>
           )}
@@ -52,20 +49,20 @@ export function CareerCard({ career }: CareerCardProps) {
       </div>
 
       {/* Summary */}
-      <p className="text-gray-700 mb-4">{c.summary}</p>
+      <p className="text-gray-700 dark:text-slate-300 mb-4">{c.summary}</p>
 
       {/* Responsibilities by Role */}
       <div className="mb-4">
-        <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
+        <h4 className="text-sm font-medium text-gray-500 dark:text-slate-500 uppercase tracking-wide mb-2">
           {t.keyResponsibilities}
         </h4>
         <div className="space-y-3">
           {c.roles.map((roleData, roleIndex) => (
             <div key={roleIndex}>
-              <h5 className="text-sm font-semibold text-gray-800 mb-1">
+              <h5 className="text-sm font-semibold text-gray-800 dark:text-slate-200 mb-1">
                 {roleData.role}
               </h5>
-              <ul className="list-disc list-inside space-y-1 text-gray-700 text-sm ml-2">
+              <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-slate-300 text-sm ml-2">
                 {roleData.responsibilities.map((item, index) => (
                   <li key={index}>{item}</li>
                 ))}
@@ -78,10 +75,10 @@ export function CareerCard({ career }: CareerCardProps) {
       {/* Achievements */}
       {c.achievements.length > 0 && (
         <div className="mb-4">
-          <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
+          <h4 className="text-sm font-medium text-gray-500 dark:text-slate-500 uppercase tracking-wide mb-2">
             {t.keyAchievements}
           </h4>
-          <ul className="list-disc list-inside space-y-1 text-gray-700 text-sm">
+          <ul className="list-disc list-inside space-y-1 text-gray-700 dark:text-slate-300 text-sm">
             {c.achievements.map((item, index) => (
               <li key={index}>{item}</li>
             ))}
@@ -91,7 +88,7 @@ export function CareerCard({ career }: CareerCardProps) {
 
       {/* Tech Stack */}
       <div className="mb-4">
-        <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
+        <h4 className="text-sm font-medium text-gray-500 dark:text-slate-500 uppercase tracking-wide mb-2">
           {t.techStack}
         </h4>
         <div className="flex flex-wrap gap-1.5">
@@ -104,7 +101,7 @@ export function CareerCard({ career }: CareerCardProps) {
       {/* Related Projects */}
       {relatedProjects.length > 0 && (
         <div>
-          <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
+          <h4 className="text-sm font-medium text-gray-500 dark:text-slate-500 uppercase tracking-wide mb-2">
             {t.relatedProjects}
           </h4>
           <ul className="space-y-1">
@@ -112,7 +109,7 @@ export function CareerCard({ career }: CareerCardProps) {
               <li key={project.id}>
                 <Link
                   href={`/projects/${project.slug}`}
-                  className="text-sm text-blue-600 hover:text-blue-800 hover:underline"
+                  className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 hover:underline"
                 >
                   {project.title} →
                 </Link>
@@ -122,7 +119,7 @@ export function CareerCard({ career }: CareerCardProps) {
           {hasMore && (
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="mt-1 text-sm text-gray-500 hover:text-gray-700"
+              className="mt-1 text-sm text-gray-500 dark:text-slate-400 hover:text-gray-700 dark:hover:text-slate-200 transition-colors"
             >
               {isExpanded
                 ? t.showLessProjects

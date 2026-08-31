@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
+/* dark: 클래스를 미디어쿼리 대신 .dark 클래스로 동작하도록 재정의 */
+@variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f1f5f9;
 }
 
 @theme inline {
@@ -16,9 +24,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Respect reduced motion preference */
+/* 모션 감소 설정 존중 */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -29,13 +38,13 @@ body {
   }
 }
 
-/* Focus styles for accessibility */
+/* 포커스 스타일 (접근성) */
 :focus-visible {
   outline: 2px solid #3b82f6;
   outline-offset: 2px;
 }
 
-/* Page transition - blur fade */
+/* 페이지 전환 - blur fade */
 @keyframes page-blur-in {
   from {
     opacity: 0;
@@ -54,7 +63,7 @@ body {
   will-change: opacity, filter, transform;
 }
 
-/* Line clamp utilities */
+/* Line clamp 유틸리티 */
 .line-clamp-1 {
   display: -webkit-box;
   -webkit-line-clamp: 1;

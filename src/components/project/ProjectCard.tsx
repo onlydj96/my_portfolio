@@ -19,24 +19,24 @@ export function ProjectCard({ project }: ProjectCardProps) {
   const p = getTranslatedProject(project, language);
 
   return (
-    <article className="group bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow">
+    <article className="group bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-gray-100 dark:border-slate-700 overflow-hidden hover:shadow-lg dark:hover:shadow-slate-900/60 transition-all duration-300 hover:-translate-y-1">
       <Link
         href={`/projects/${p.slug}`}
         className="block"
         aria-label={`${p.title} - ${t.viewDetail}`}
       >
-        {/* Thumbnail */}
-        <div className="aspect-video bg-gray-100 relative">
+        {/* 썸네일 */}
+        <div className="aspect-video bg-gray-100 dark:bg-slate-700 relative overflow-hidden">
           {p.thumbnailImage ? (
             <Image
               src={p.thumbnailImage}
               alt={p.title}
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center text-gray-400">
+            <div className="absolute inset-0 flex items-center justify-center text-gray-400 dark:text-slate-500">
               <svg
                 className="w-12 h-12"
                 fill="none"
@@ -55,36 +55,36 @@ export function ProjectCard({ project }: ProjectCardProps) {
           )}
         </div>
 
-        {/* Content */}
+        {/* 콘텐츠 */}
         <div className="p-4 sm:p-6">
-          {/* Categories */}
+          {/* 카테고리 배지 */}
           <div className="flex flex-wrap gap-2 mb-3">
             {p.categories.map((category) => (
               <CategoryBadge key={category} category={category} />
             ))}
           </div>
 
-          {/* Title */}
-          <h3 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-2 line-clamp-2">
+          {/* 제목 */}
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-slate-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-2 line-clamp-2">
             {p.title}
           </h3>
 
-          {/* Summary */}
-          <p className="text-gray-600 text-sm mb-4 line-clamp-2">{p.summary}</p>
+          {/* 요약 */}
+          <p className="text-gray-600 dark:text-slate-400 text-sm mb-4 line-clamp-2">{p.summary}</p>
 
-          {/* Role */}
+          {/* 역할 */}
           <div className="mb-4">
-            <span className="text-xs font-medium text-gray-500 uppercase tracking-wide">{t.role}</span>
-            <p className="text-sm text-gray-700 mt-1 line-clamp-1">{p.role.join(", ")}</p>
+            <span className="text-xs font-medium text-gray-500 dark:text-slate-500 uppercase tracking-wide">{t.role}</span>
+            <p className="text-sm text-gray-700 dark:text-slate-300 mt-1 line-clamp-1">{p.role.join(", ")}</p>
           </div>
 
-          {/* Tech Stack */}
+          {/* 기술 스택 */}
           <div className="flex flex-wrap gap-1.5">
             {p.techStack.slice(0, 4).map((tech) => (
               <TechTag key={tech} name={tech} />
             ))}
             {p.techStack.length > 4 && (
-              <span className="text-xs text-gray-500 self-center">
+              <span className="text-xs text-gray-500 dark:text-slate-500 self-center">
                 +{p.techStack.length - 4}
               </span>
             )}

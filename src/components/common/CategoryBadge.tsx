@@ -6,12 +6,12 @@ interface CategoryBadgeProps {
 }
 
 const categoryColors: Record<ProjectCategory, string> = {
-  AX: "bg-purple-100 text-purple-800",
-  PROJECT_MANAGEMENT: "bg-green-100 text-green-800",
-  NLP: "bg-yellow-100 text-yellow-800",
-  COMPUTER_VISION: "bg-red-100 text-red-800",
-  EDGE_AI: "bg-orange-100 text-orange-800",
-  WEB: "bg-cyan-100 text-cyan-800",
+  AX: "bg-purple-100 dark:bg-purple-900/40 text-purple-800 dark:text-purple-300",
+  PROJECT_MANAGEMENT: "bg-green-100 dark:bg-green-900/40 text-green-800 dark:text-green-300",
+  NLP: "bg-yellow-100 dark:bg-yellow-900/40 text-yellow-800 dark:text-yellow-300",
+  COMPUTER_VISION: "bg-red-100 dark:bg-red-900/40 text-red-800 dark:text-red-300",
+  EDGE_AI: "bg-orange-100 dark:bg-orange-900/40 text-orange-800 dark:text-orange-300",
+  WEB: "bg-cyan-100 dark:bg-cyan-900/40 text-cyan-800 dark:text-cyan-300",
 };
 
 export function CategoryBadge({ category }: CategoryBadgeProps) {

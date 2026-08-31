@@ -183,26 +183,36 @@ export const projectTranslationsEn: Record<string, ProjectTranslation> = {
 
   "edge-ai-solution": {
     title: "Edge AI Solution Development",
-    subtitle: "Video analysis based on NVIDIA Jetson, ODROID, and DEEPX",
+    subtitle: "Real-time Video Analysis System based on NVIDIA Jetson · RKNN NPU · DEEPX",
     summary:
-      "Developed an Edge Device-based video analysis solution to independently run AI models in diverse field environments.",
-    role: ["Edge AI solution development", "Model optimization", "Field deployment"],
+      "Developed an Edge AI video analysis system to run Computer Vision models in real-time across diverse Edge Devices. Built GPU-based inference systems centered on NVIDIA Jetson product lines, then expanded to RKNN / DEEPX NPU-based inference on ODROID and Orange Pi platforms. Beyond simple model execution, built a complete Edge Pipeline covering video input → AI inference → post-processing → counting → server transmission, optimized to handle multiple cameras stably on limited compute resources.",
+    role: ["Edge AI development", "Inference pipeline optimization", "Device integration", "Field deployment"],
     problem:
-      "There was a requirement to independently run AI models in field environments.",
+      "There was a requirement to run AI models independently in field environments without relying on cloud or central servers. A system was needed that could operate across diverse Edge Device platforms (GPU, NPU), stably handle multiple cameras under limited compute resources, and transmit inference results to a server in real time as part of an end-to-end pipeline.",
     solution:
-      "Developed video analysis solutions based on NVIDIA Jetson, ODROID, and DEEPX devices.",
+      "Built a GPU pipeline using NVIDIA DeepStream on Jetson products as the primary platform, establishing a multi-camera real-time inference environment. Jetson Orin Nano served as the primary Edge Device for traffic counting and crowd counting systems, with CPU usage minimized and GPU and Hardware Decoder fully utilized for multi-RTSP stream processing. Subsequently expanded to RKNN NPU on ODROID and DEEPX NPU on Orange Pi for low-power compact Edge Devices, building an Edge AI architecture not locked to a specific platform.",
     responsibilities: [
-      "Configured AI model execution environment per device",
-      "Developed video input and real-time inference pipeline",
-      "Converted and optimized models suited to device performance",
-      "Integrated data synchronization between Edge Device and central server",
-      "Transmitted inference results, images, and device status",
-      "Handled field installation and incident response",
-      "Validated compatibility and performance per device",
+      "Set up NVIDIA Jetson-based Edge AI execution environments",
+      "Developed DeepStream-based multi-camera video pipeline",
+      "RTSP multi-stream real-time processing",
+      "Model optimization and inference with TensorRT",
+      "Detection / Tracking / Counting pipeline development",
+      "Performance and compatibility validation per Jetson device",
+      "RKNN NPU-based AI model conversion and runtime integration",
+      "DEEPX NPU-based Edge AI system development",
+      "CPU / GPU / NPU compute distribution and pipeline optimization",
+      "Data integration between Edge Device and central server",
+      "Transmission of inference results, images, and device status",
+      "Field network and Edge Device installation",
+      "Field incident analysis and response",
     ],
     achievements: [
-      "Supported various Edge Device environments",
-      "Built real-time video analysis pipeline",
+      "Acquired hands-on experience with diverse Edge AI hardware platforms spanning Jetson to NPU",
+      "Built Orin Nano-based multi-camera real-time video analysis system",
+      "Optimized GPU video processing pipeline with DeepStream and TensorRT",
+      "Deployed traffic counting and crowd counting systems to actual Edge Devices in the field",
+      "Extended Edge AI architecture to NPU environments using RKNN and DEEPX",
+      "Built complete end-to-end Edge AI system: Device → Inference → Network → Server → Field Deployment",
     ],
   },
 
@@ -231,6 +241,7 @@ export const projectTranslationsEn: Record<string, ProjectTranslation> = {
       "Feature improvements based on customer feedback",
     ],
     achievements: [
+      "Live service with 600+ monthly visitors",
       "Completed full website development for a leading Hongdae performance venue",
       "Commercialized real-time reservation management system",
       "Improved customer response efficiency through automated email dispatch",

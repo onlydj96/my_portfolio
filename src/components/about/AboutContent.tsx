@@ -81,19 +81,19 @@ export function AboutContent() {
   return (
     <div className="py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">{t.title}</h1>
+        <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-slate-100 mb-8">{t.title}</h1>
 
         {/* Bio */}
         <section className="mb-12">
-          <p className="text-lg text-gray-700 leading-relaxed">{bio}</p>
+          <p className="text-lg text-gray-700 dark:text-slate-300 leading-relaxed">{bio}</p>
         </section>
 
         {/* Career Path */}
         <section>
-          <h2 className="text-2xl font-semibold text-gray-900 mb-6">{t.careerPath}</h2>
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-slate-100 mb-6">{t.careerPath}</h2>
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200" aria-hidden="true" />
+            <div className="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-slate-700" aria-hidden="true" />
 
             <div className="space-y-8">
               {path.map((item, index) => (
@@ -103,17 +103,17 @@ export function AboutContent() {
                     className={`absolute left-2 w-5 h-5 rounded-full border-2 ${
                       index === path.length - 1
                         ? "bg-blue-600 border-blue-600"
-                        : "bg-white border-gray-300"
+                        : "bg-white dark:bg-slate-800 border-gray-300 dark:border-slate-600"
                     }`}
                     style={{ top: "0.125rem" }}
                     aria-hidden="true"
                   />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                  <h3 className="text-lg font-semibold text-gray-900 dark:text-slate-100 mb-1">
                     {item.role}{" "}
-                    <span className="text-sm text-gray-500 font-normal ml-2">{item.period}</span>
+                    <span className="text-sm text-gray-500 dark:text-slate-400 font-normal ml-2">{item.period}</span>
                   </h3>
-                  <p className="text-sm font-medium text-gray-700 mb-1">{item.company}</p>
-                  <p className="text-gray-600">{item.description}</p>
+                  <p className="text-sm font-medium text-gray-700 dark:text-slate-300 mb-1">{item.company}</p>
+                  <p className="text-gray-600 dark:text-slate-400">{item.description}</p>
                 </div>
               ))}
             </div>
