@@ -83,7 +83,7 @@ export function ProjectDetail({ project }: ProjectDetailProps) {
         {/* Gallery */}
         {p.gallery && p.gallery.length > 0 && (
           <section>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-slate-100 mb-4">{t.gallery}</h2>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-slate-100 mb-4">{p.galleryTitle ?? t.gallery}</h2>
             <div className="grid grid-cols-1 gap-6">
               {p.gallery.map((image, index) => (
                 <figure key={index}>

@@ -18,6 +18,7 @@ export function getTranslatedProject(project: Project, language: Language): Proj
     responsibilities: t.responsibilities ?? project.responsibilities,
     achievements: t.achievements ?? project.achievements,
     lessonsLearned: t.lessonsLearned ?? project.lessonsLearned,
+    galleryTitle: t.galleryTitle ?? project.galleryTitle,
     gallery: project.gallery?.map((img, i) => ({
       ...img,
       caption: t.gallery?.[i]?.caption ?? img.caption,

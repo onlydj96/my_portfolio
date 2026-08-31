@@ -100,6 +100,8 @@ export const projects: Project[] = [
       "관제 화면·알림 시스템 연동 완료",
     ],
     techStack: ["Python", "PyTorch", "OpenCV", "3D Reconstruction", "BEV Projection", "Spatial Clustering", "NVIDIA Jetson"],
+    thumbnailImage: "/source/crowd/thumbnail.png",
+    galleryTitle: "시스템 워크플로우",
     gallery: [
       {
         src: "/images/projects/crowd-monitoring/pipeline.png",

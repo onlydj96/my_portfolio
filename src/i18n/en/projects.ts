@@ -8,6 +8,7 @@ interface ProjectTranslation {
   responsibilities: string[];
   achievements: string[];
   lessonsLearned?: string;
+  galleryTitle?: string;
   gallery?: Array<{ caption?: string }>;
 }
 
@@ -116,6 +117,7 @@ export const projectTranslationsEn: Record<string, ProjectTranslation> = {
       "Eliminated Camera View perspective distortion to enable absolute spatial density calculation",
       "Completed integration with the monitoring display and notification systems",
     ],
+    galleryTitle: "System Workflow",
     gallery: [
       {
         caption:

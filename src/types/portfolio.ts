@@ -47,6 +47,7 @@ export const projectSchema = z.object({
   techStack: z.array(z.string()).min(1),
   architectureImage: z.string().optional(),
   thumbnailImage: z.string().optional(),
+  galleryTitle: z.string().optional(),
   gallery: z.array(z.object({
     src: z.string(),
     caption: z.string().optional(),
